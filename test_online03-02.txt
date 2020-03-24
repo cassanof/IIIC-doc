@@ -1,0 +1,6 @@
+Definisco una costante N di valore 3
+Dichiaro 3 array di N double  ( a1 , a2 , asomma)
+Chiedo all'utente gli N valori per i primi due array
+calcolo asomma come la somma voce per voce di a1 e a2
+stampo N righe: (esempio)
+la somma di     45 e    12   e'   57
