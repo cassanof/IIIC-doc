@@ -1,6 +1,7 @@
 #include <iostream>  // serve per includere le definizioni della libreria
 #include <cmath>
 #include <iomanip>
+#include <cstdio>
 
 // bubble sort
 
@@ -31,7 +32,7 @@ void qsort(int * array , int ini , int fin)
   int temp_ini,temp_fin;
   temp_ini=ini;temp_fin=fin;
   pivot= array[ (temp_ini+temp_fin) >>1] ; // valore a meta'
-   printf("%5d %5d\n",temp_ini,temp_fin);
+  printf("%5d %5d\n",temp_ini,temp_fin);
   while (temp_ini < temp_fin)
     {
     while (array[temp_ini] < pivot && temp_ini < fin )
