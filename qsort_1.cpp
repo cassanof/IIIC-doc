@@ -1,18 +1,23 @@
-#include <iostream>  // serve per includere le definizioni della libreri
+#include <iostream>  // serve per includere le definizioni della libreria
+#include <cmath>
 #include <iomanip>
-#include <cstdio>
 
 // bubble sort
 
 using namespace std;  // permette di usare gli oggetti e le funzioni 
 
-void qsort(int * array , int ini , int fin); // dichiarazione: e' prima di main
+template <class X>
+void qsort(X * array , int ini , int fin,int (*cmp)(X& ,X &));// dichiarazione: e' prima di main
 void stampa(int dati[],int ini , int fin);
+int compara_interi(int & a,int & b) // ><=0 a segìconda che a>b a>b a==b
+  {return (a-b);
+  }
+
 int main()
   {
   int  lista[]={33, 3, 2, 5, 6,23,43,88, 9, 5,34,23,33,55};
   // dim array :  dimensione in bytes dell'array / dimensione dell'elemento
-  qsort (lista, 0,sizeof(lista) / sizeof(lista[0]) -1); // dim dell'array
+  qsort (lista, 0,sizeof(lista) / sizeof(lista[0]) -1 , compara_interi); // dim dell'array
   stampa(lista,0,sizeof(lista) / sizeof(lista[30] ) -1 );
   
   }
@@ -26,19 +31,20 @@ void stampa(int dati[], int ini , int fin)
   cout << endl;
   }  
 
-void qsort(int * array , int ini , int fin)
+template <class X>
+void qsort(X * array , int ini , int fin,int (*cmp)(X& ,X &))
   {
-  int pivot; int temp;
+  X pivot; X temp;
   int temp_ini,temp_fin;
   temp_ini=ini;temp_fin=fin;
   pivot= array[ (temp_ini+temp_fin) /2 ] ; // valore a meta'
-  printf("pivot: %d  ini: %d  fin: %d\n",pivot,temp_ini,temp_fin);
+  //printf("pivot: %d  ini: %d  fin: %d\n",pivot,temp_ini,temp_fin);
   stampa(array,ini,fin) ; 
   while (temp_ini <= temp_fin)
     {
-    while (array[temp_ini] < pivot && temp_ini < fin )
+    while (cmp( array[temp_ini] , pivot)<0   && temp_ini < fin )   // array[temp_ini] < pivot 
       temp_ini++;
-    while (pivot < array[temp_fin] && temp_fin >ini  )
+    while (cmp( pivot , array[temp_fin])<0   && temp_fin >ini  )
       temp_fin--;
     if (temp_ini <= temp_fin)
       {
@@ -55,8 +61,8 @@ void qsort(int * array , int ini , int fin)
     //return;
     printf("   blocco1: %d-%d  blocco2: %d-%d\n",ini,temp_fin,temp_ini,fin);
     //if (temp_fin<temp_ini) 
-    if (ini < temp_fin ) qsort(array,ini,temp_fin);  
-    if (temp_ini < fin ) qsort(array,temp_ini,fin);  
+    if (ini < temp_fin ) qsort(array,ini,temp_fin,cmp);  
+    if (temp_ini < fin ) qsort(array,temp_ini,fin,cmp);  
     //stampa(array,ini,fin) ; 
     }
       
