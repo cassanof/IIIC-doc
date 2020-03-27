@@ -1,6 +1,6 @@
-#include <iostream>  // serve per includere le definizioni della libreri
-#include <iomanip>
+#include <iostream>  // serve per includere le definizioni della libreria
 #include <cstdio>
+#include <iomanip>
 
 // bubble sort
 

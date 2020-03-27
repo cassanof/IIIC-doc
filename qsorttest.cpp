@@ -21,7 +21,7 @@ int main()
   if (!lista) printf("err");
   srand(-time(0)); // inizializzo il generatore random
   // dim array :  dimensione in bytes dell'array / dimensione dell'elemento
-   for (int i=0;i<N;i++) lista[i]=rand() ;
+   for (int i=0;i<N;i++) lista [i]=rand() ;
   stampa(lista,0, 100 );
   qsort (lista, 0, N -1); // dim dell'array
  
