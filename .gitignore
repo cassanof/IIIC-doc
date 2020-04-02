@@ -24,6 +24,7 @@ CMakeLists.txt
 # Folders
 cmake-build-debug/
 .idea/
+.qsortEsercizio/
 
 # Fortran module files
 *.mod
