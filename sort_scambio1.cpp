@@ -1,38 +1,42 @@
 #include <iostream>  // serve per includere le definizioni della libreria
-#include <cstdio>
+#include <cmath>
 #include <iomanip>
+#include <unistd.h>
 // g++ sort_scambio.cpp -o sort_scambio
 // bubble sort
 
 using namespace std;  // permette di usare gli oggetti e le funzioni 
-template <class X>
-void ordina(X dati[], int dim,int (*cmp)(X& ,X &)  ); // dichiarazione: e' prima di main
-template <class X>
-int ricerca_lineare(X dati[], short dim ,X dato_cercato);
-template <class X>
-int ricerca_binaria(X dati[], short dim ,X dato_cercato);
 
 template <class X>
+void ordina(X dati[], int dim,int (*cmp)(X& ,X &)  ); // dichiarazione: e' prima di main
+template <class X>  
+int ricerca_lineare(X dati[], int dim ,X dato_cercato);
+template <class X>
+int ricerca_binaria(X dati[], short dim ,X dato_cercato);
+template <class X>
 int compara_interi(X & a,X & b) // ><=0 a segìconda che a>b a>b a==b
-  {
-    if (a-b>0) return 1;
-    if (a-b<0) return -1;
-    return 0;
+  {if (a-b>0) return 1;
+  if (a-b<0) return -1;
+  return 0;
   }
 
 
 int main()
   {
-  int numero=43;
-  double lista[]={34, 3, 2, 5, 6.8, 23.9, 43, 88, 9, 5, 43, 23};
+  double numero=35;
+  //int  lista[]={34, 3, 2, 5, 6,23.8,43,88, 9, 5,43,23};
+  double  lista[]={34, 3, 2, 5.6, 6,23.8,43,88, 9, 5,43,23};
   printf("Il numero %d e' in posizione %d\n" ,numero ,
-    ricerca_lineare( lista, sizeof(lista) / sizeof(lista[-50]),(double)numero ));
+    ricerca_lineare( lista, sizeof(lista) / sizeof(lista[-50]),(double)numero) );
   // dim array :  dimensione in bytes dell'array / dimensione dell'elemento
   ordina (lista, sizeof(lista) / sizeof(lista[20]) ,compara_interi ); // dim dell'array
   printf("Il numero %d e' in posizione %d\n" ,numero ,
-    ricerca_binaria( lista, sizeof(lista) / sizeof(lista[-50]),(double)numero) );
+    ricerca_binaria( lista, sizeof(lista) / sizeof(lista[-50]),numero) );
+  
+  
   }
-template <class X>
+
+template <class X>  
 int ricerca_binaria(X dati[], short dim ,X dato_cercato)
   { //ricerca dat_cercato e restituisce la posizione 
     // returns -1 if not found. DATI DEVE ESSERE SORTED (ORDINATO)
@@ -54,10 +58,10 @@ int ricerca_binaria(X dati[], short dim ,X dato_cercato)
     valore_mid=dati[mid];  
     }
     return -1;
-  }
-
-template <class X>
-int ricerca_lineare(X dati[], short dim ,X dato_cercato)
+  }  
+  
+template <class X>  
+int ricerca_lineare(X dati[], int dim ,X dato_cercato)
   { //ricerca dat_cercato e restituisce la posizione 
     // returns -1 if not found
   for (int i=0; i< dim ;i++)
@@ -66,19 +70,18 @@ int ricerca_lineare(X dati[], short dim ,X dato_cercato)
       return i;
     }
   return -1;
-  }
-
+  }  
 template <class X>
-void stampa(X dati[], short dim)
+void stampa(X dati[], int dim)
   {
   for (int i=0;i< dim;i++)
     {
-    cout << setw(5) << dati[i];
+    cout << setw(6) << dati[i];
     }
   cout << endl;
-  }
-
-template <class X>
+  }  
+   
+template <class X>   
 void scambia(X& a, X& b){  //"a,b=b,a;"?
 X c;
 c = a; a = b;b = c;

@@ -1,5 +1,5 @@
 #include <iostream>  // serve per includere le definizioni della libreria
-#include <cstdio>
+#include <cmath>
 #include <iomanip>
 
 // bubble sort
