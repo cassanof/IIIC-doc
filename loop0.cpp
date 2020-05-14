@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 #define N 3
+
 int main( int argn , char * argv[])
   {
   //const int N=3; // modo 2 di definire la costante
